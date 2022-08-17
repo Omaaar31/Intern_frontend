@@ -1,0 +1,21 @@
+$default-color: #000;
+$lighten-color: lighten($default-color, 10%);
+
+.intern-card {
+  width: 50em;
+  border: solid 1px $default-color;
+  box-shadow: 0 5px 5px -5px $default-color;
+  box-shadow: 5px 0 5px -5px $default-color;
+
+  span {
+    &.uppercase {
+      text-transform: uppercase;
+    }
+  }
+}
+
+table {
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+}

@@ -1,0 +1,34 @@
+<p>{{ getTitle() }}</p>
+
+<div class="intern-card" *ngFor="let intern of interns">
+  <!-- ngFor = itération sur tableau (boucle) et évite appendChild, innerHTML...-->
+  <span class="uppercase">{{ intern.name }}</span> {{ intern.firstname }}
+  {{ intern.email }}
+</div>
+
+<br />
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th (click)="sortByName()">Name</th>
+      <th>Firstname</th>
+      <th>Email</th>
+      <th>PhoneNumber</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let intern of interns">
+      <td>{{ intern.id }}</td>
+      <td>{{ intern.name | uppercase }}</td>
+      <td>{{ intern.firstname }}</td>
+      <td>{{ intern.email }}</td>
+      <td>{{ intern.phoneNumber }}</td>
+      <td><span (click)="onDelete(intern)">X</span></td>
+      <!--       <button class="remove" (click)="deleteRow(supp.intern)">Delete</button>
+ -->
+    </tr>
+  </tbody>
+</table>
