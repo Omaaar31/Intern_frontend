@@ -8,7 +8,7 @@ import { Intern } from './core/models/intern';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  private title = 'Hello Angular 13';
+  public title = 'Hello Angular 13';
 
   public static sortOrder: number = 1;
 
