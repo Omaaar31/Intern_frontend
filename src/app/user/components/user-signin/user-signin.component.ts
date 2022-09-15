@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Logger } from 'src/app/core/helpers/logger.spec';
 import { UserService } from '../../services/user.service';
 
@@ -13,7 +14,8 @@ export class UserSigninComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -29,9 +31,10 @@ export class UserSigninComponent implements OnInit {
   public onSubmit(): void {
     this.userService.signin(this.signinForm.value);
     if (this.userService.isAuthenticated()) {
+      this.router.navigate(['/', 'interns']);
       Logger.info('Got a user');
     } else {
-      Logger.info('Bad credentials');
+      this.signinForm.reset();
     }
   }
 }
