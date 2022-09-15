@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AgePipe } from './pipes/age.pipe';
 import { InitialsDirective } from './directives/initials.directive';
 import { InitialPipe } from './pipes/initial.pipe';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { InitialPipe } from './pipes/initial.pipe';
     InitialsDirective,
     InitialPipe,
   ],
-  imports: [CommonModule, UiModule, ReactiveFormsModule],
+  imports: [CommonModule, UiModule, ReactiveFormsModule, RouterModule],
   exports: [
     ReactiveFormsModule,
     UiModule,

@@ -7,6 +7,7 @@ import { POEAddComponent } from './poe/components/poe-add/poe-add.component';
 import { POEDetailComponent } from './poe/components/poe-detail/poe-detail.component';
 import { POETableComponent } from './poe/components/poe-table/poe-table.component';
 import { UserSigninComponent } from './user/components/user-signin/user-signin.component';
+import { HasUserGuard } from './user/guards/has-user.guard';
 
 @NgModule({
   imports: [RouterModule.forRoot(AppRoutingModule.routes)],
@@ -53,7 +54,11 @@ export class AppRoutingModule {
       path: 'poe/manage/add',
       component: POEAddComponent,
     },
-    { path: 'signin', component: UserSigninComponent },
+    {
+      path: 'signin',
+      component: UserSigninComponent,
+      canActivate: [HasUserGuard],
+    },
     {
       //Fallback route
       path: '**',
