@@ -1,0 +1,26 @@
+<p>
+  <mat-toolbar>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
+    <a href="#">
+      <button
+        class="mat-raised-button"
+        color="primary"
+        matBadgePosition="before"
+        matBadgeColor="accent"
+      >
+        <span>Go to Home</span>
+        <em></em>
+      </button>
+    </a>
+    <!-- <a href="#" class="material-symbols-outlined"> home </a>
+ -->
+    <span class="spacer"
+      ><!-- Creer une contenu invisible qui va permettre de creer l'espace en CSS  --></span
+    >
+    Le nombre d'intern est le suivant : {{ itemNumber$ | async }}
+  </mat-toolbar>
+</p>

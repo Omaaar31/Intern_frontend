@@ -1,0 +1,22 @@
+<h2>Intern detail</h2>
+
+<ul *ngIf="intern">
+  <div *ngIf="intern" appInitials [intern]="intern"></div>
+  <li>ID : {{ intern.id }}</li>
+  <li>Name : {{ intern.name | uppercase }}</li>
+  <li>Firstname : {{ intern.firstName | uppercase }}</li>
+  <li>Email : {{ intern.email }}</li>
+  <li>Phone : {{ intern.phoneNumber }}</li>
+  <li>
+    Birthdate : {{ intern.birthDate | date: "mediumDate" }} ({{
+      intern.birthDate! | age | async
+    }})
+  </li>
+  <li>Address : {{ intern.adress }}</li>
+</ul>
+
+<button [routerLink]="['/', 'interns']">Redirection vers l'accueil</button>
+
+<ng-template #notFound>
+  <div>Sorry, but no Intern does match to {{ intern!.id }} #</div>
+</ng-template>

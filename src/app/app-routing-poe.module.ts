@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { InternAddComponent } from './intern/components/intern-add/intern-add.component';
-import { InternDetailComponent } from './intern/components/intern-detail/intern-detail.component';
-import { InternTableComponent } from './intern/components/intern-table/intern-table.component';
 import { POEAddComponent } from './poe/components/poe-add/poe-add.component';
 import { POEDetailComponent } from './poe/components/poe-detail/poe-detail.component';
 import { POETableComponent } from './poe/components/poe-table/poe-table.component';
@@ -13,28 +10,6 @@ import { POETableComponent } from './poe/components/poe-table/poe-table.componen
 })
 export class AppRoutingModule {
   public static routes: Routes = [
-    {
-      path: '',
-      redirectTo: 'interns',
-      pathMatch: 'full',
-    },
-    {
-      path: 'interns',
-      component: InternTableComponent,
-    },
-    {
-      path: 'intern/:id',
-      component: InternDetailComponent,
-    },
-    {
-      path: 'intern/manage/add',
-      component: InternAddComponent,
-    },
-    {
-      path: '',
-      redirectTo: 'interns',
-      pathMatch: 'full',
-    },
     {
       path: '',
       redirectTo: 'poes',

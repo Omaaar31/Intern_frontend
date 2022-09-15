@@ -1,0 +1,19 @@
+<form [formGroup]="internForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput formControlName="name" placeholder="Your name" />
+  </mat-form-field>
+  <button mat-raised-button color="accent" [disabled]="internForm.invalid">
+    Save
+  </button>
+
+  <button
+    class="second-button"
+    mat-raised-button
+    color="primary"
+    [routerLink]="['/', 'interns']"
+  >
+    Back
+  </button>
+</form>
+
+{{ internForm.value | json }}

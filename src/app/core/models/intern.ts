@@ -1,9 +1,13 @@
 export class Intern {
   public id?: number;
-  public name!: string;
-  public firstname?: string;
+  public name: string;
+  public firstName?: string;
   public phoneNumber?: string;
   public email?: string;
   public birthDate?: Date;
-  public address?: string;
+  public adress?: string;
+
+  public constructor() {
+    this.name = '';
+  }
 }

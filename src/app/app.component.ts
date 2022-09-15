@@ -1,59 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Logger } from './core/helpers/logger.spec';
+import { StringHelper } from './core/helpers/stringHelpers';
 import { Intern } from './core/models/intern';
+import { InternService } from './core/services/intern.service';
+import { POEService } from './core/services/poe.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public title = 'Hello Angular 13';
 
-  public static sortOrder: number = 1;
+  public constructor(
+    public internService: InternService,
+    public poesService: POEService
+  ) {}
 
-  public intern: Intern = {
-    name: 'Aubert',
-    firstname: 'Jean-Luc',
-    phoneNumber: '0505050505',
-    email: 'jla@gmail.com',
-  };
+  ngOnInit(): void {
+    this.internService.findAll().subscribe();
+    this.poesService.findAll().subscribe();
 
-  public interns: Intern[] = [
-    this.intern,
-    {
-      name: 'Pina',
-      firstname: 'Monica',
-      email: 'monica@gmail.com',
-      phoneNumber: '07070707',
-    },
-    {
-      name: 'Castanie',
-      firstname: 'Piotr',
-      email: 'piotr@gmail.com',
-      phoneNumber: '0808080808',
-    },
-  ];
-
-  public onDelete(intern: Intern): void {
-    console.log('Click was detected');
-    this.interns.splice(this.interns.indexOf(intern), 1);
+    console.log(
+      StringHelper.sanitizePunctuation(`Ca va? Toi aussi , bonjour .`)
+    );
   }
 
   public getTitle(): string {
     return this.title;
   }
 
-  public sortByName(): void {
-    Logger.info(`Before sort, sortOrder is : ${AppComponent.sortOrder}`);
-    this.interns.sort(AppComponent.sortName);
-    AppComponent.sortOrder = AppComponent.sortOrder * -1;
-    Logger.info(`After sort, sortOrder is : ${AppComponent.sortOrder}`);
-  }
-
+  /*
   public static sortName(intern1: Intern, intern2: Intern): number {
     return intern1.name.localeCompare(intern2.name) * AppComponent.sortOrder;
-  }
+  } */
 
   /*   public static sortName(intern1: Intern, intern2: Intern): number {
     if (intern1.name > intern2.name) {

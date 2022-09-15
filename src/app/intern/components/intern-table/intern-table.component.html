@@ -1,0 +1,81 @@
+<h1>Interns list</h1>
+
+<h4>List of poes</h4>
+<mat-form-field appearance="fill">
+  <mat-label>List of poes</mat-label>
+  <mat-select>
+    <mat-option
+      [routerLink]="['/', 'intern', '/:id']"
+      *ngFor="let poe of poes"
+      [value]="poe.title"
+    >
+      {{ poe.title }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div class="intern-card" *ngFor="let intern of interns">
+  <!-- ngFor = itération sur tableau (boucle) et évite appendChild, innerHTML...-->
+  <span class="uppercase">{{ intern.name }}</span> {{ intern.firstName }}
+  {{ intern.email }}
+</div>
+
+<br />
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th (click)="sortByName()">Name</th>
+      <th>Firstname</th>
+      <th>Email</th>
+      <th>PhoneNumber</th>
+      <th>&nbsp;</th>
+      <th>Birthdate</th>
+      <th>&nbsp;</th>
+      <th>Adress</th>
+      <th>Initials</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let intern of interns">
+      <td>{{ intern.id }}</td>
+      <td>
+        {{ intern | initial }}
+        <a [routerLink]="['/', 'intern', intern.id]">{{
+          intern.name | uppercase
+        }}</a>
+      </td>
+      <td>{{ intern.firstName | uppercase }}</td>
+      <td>{{ intern.email }}</td>
+      <td>{{ intern.phoneNumber }}</td>
+      <td>&nbsp;</td>
+      <td>{{ intern.birthDate | date: "mediumDate" }}</td>
+      <td>&nbsp;</td>
+      <td>{{ intern.adress }}</td>
+      <td>
+        <div appInitials [intern]="intern" [config]="bubbleConfig"></div>
+      </td>
+      <button
+        mat-icon-button
+        color="primary"
+        aria-label="Example icon button with a home icon"
+        (click)="onDelete(intern)"
+      >
+        <td><mat-icon>delete</mat-icon></td>
+      </button>
+
+      <!--       <button class="remove" (click)="deleteRow(supp.intern)">Delete</button>
+ -->
+    </tr>
+  </tbody>
+</table>
+
+<button
+  class="button-add-intern"
+  mat-raised-button
+  [routerLink]="['/', 'intern', 'manage', 'add']"
+>
+  Add an Intern
+  <span></span><span></span><span></span><span></span>
+</button>

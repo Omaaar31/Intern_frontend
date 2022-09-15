@@ -1,0 +1,42 @@
+<div class="poe-card" *ngFor="let poe of poeService.poes"></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>BeginDate</th>
+      <th>EndDate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let poe of poeService.poes">
+      <td>{{ poe.id }}</td>
+      <td>
+        <a [routerLink]="['/', 'poe', poe.id]">{{ poe.title }}</a>
+      </td>
+      <td>{{ poe.beginDate | date: "mediumDate" }}</td>
+      <td>{{ poe.endDate | date: "mediumDate" }}</td>
+      <td>
+        <button
+          mat-icon-button
+          color="primary"
+          aria-label="Example icon button with a home icon"
+          (click)="onDelete(poe)"
+        >
+          <mat-icon>delete</mat-icon>
+          DELETE
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button
+  mat-raised-button
+  color="accent"
+  class="add"
+  [routerLink]="['/', 'poe', 'manage', 'add']"
+>
+  Add a POE
+</button>

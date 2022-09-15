@@ -1,0 +1,28 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead {
+  border-bottom: solid 1px black;
+}
+
+th {
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #b5c7c7;
+}
+
+td {
+  border: solid 1px black;
+  text-align: center;
+}
+
+.add {
+  margin-top: 20px;
+  margin-left: 10px;
+  color: aliceblue;
+  background-color: #2148b4c5;
+}

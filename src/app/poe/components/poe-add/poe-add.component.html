@@ -1,0 +1,19 @@
+<form [formGroup]="poeForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput formControlName="title" placeholder="Your title" />
+  </mat-form-field>
+  <button mat-raised-button color="accent" [disabled]="poeForm.invalid">
+    Save
+  </button>
+
+  <button
+    class="second-button"
+    mat-raised-button
+    color="primary"
+    [routerLink]="['/', 'poes']"
+  >
+    Back
+  </button>
+</form>
+
+{{ poeForm.value | json }}

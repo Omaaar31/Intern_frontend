@@ -1,0 +1,22 @@
+<p>poe-detail works!</p>
+
+<ng-container *ngIf="poe !== null">
+  <div>
+    <li>
+      {{ poe.id }}
+    </li>
+    <li>
+      {{ poe.title }}
+    </li>
+    <li>
+      {{ poe.beginDate | date: "mediumDate" }}
+    </li>
+    <li>
+      {{ poe.endDate | date: "mediumDate" }}
+    </li>
+  </div>
+</ng-container>
+
+<button class="redirect" [routerLink]="['/', 'poes']">
+  Redirection vers liste Poes
+</button>
