@@ -80,7 +80,21 @@ export class UserService {
    *
    * @returns Yes or No a user was authenticated
    */
+
   public isAuthenticated(): boolean {
-    return this.user !== null;
+    const user: string | null = localStorage.getItem(this.STORAGE_KEY);
+
+    if (user !== null) {
+      this.user = new UserModel();
+      //Je parse la chaine user pour récupérer un objet
+      const persistentUser: any = JSON.parse(user);
+      //Je defini user
+      this.user.setLogin(persistentUser.login);
+      this.user.setToken(persistentUser.token);
+    }
+    if (this.user === null) {
+      return false;
+    }
+    return true;
   }
 }

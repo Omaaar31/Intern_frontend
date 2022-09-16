@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
@@ -12,7 +13,10 @@ import { UserService } from '../services/user.service';
   providedIn: 'root',
 })
 export class HasUserGuard implements CanActivate {
-  public constructor(private userService: UserService) {}
+  public constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -22,6 +26,10 @@ export class HasUserGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.userService.isAuthenticated() ? false : true;
+    if (this.userService.isAuthenticated()) {
+      this.router.navigate(['/', 'interns']);
+      return false;
+    }
+    return true;
   }
 }
