@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Intern } from 'src/app/core/models/intern';
 import { InternService } from 'src/app/core/services/intern.service';
+import { UserService } from 'src/app/user/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,10 @@ export class HeaderComponent implements OnInit {
 
   public itemNumber$!: BehaviorSubject<number>;
 
-  constructor(private internService: InternService) {}
+  constructor(
+    private internService: InternService,
+    public userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.itemNumber$ = this.internService.displayIntern;

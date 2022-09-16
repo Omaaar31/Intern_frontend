@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Logger } from 'src/app/core/helpers/logger.spec';
+import { AddSnackService } from 'src/app/core/services/add-snack.service';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class UserSigninComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router //private snackBar: AddSnackService
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +36,13 @@ export class UserSigninComponent implements OnInit {
       Logger.info('Got a user');
     } else {
       this.signinForm.reset();
+      //this.snackBar.showSnackBar('Login or password false');
+      /*      this.hasError = true;
+      setTimeout(() => (this.hasError = false), 2500); */
     }
   }
+
+  /*   public close(): void {
+    this.hasError = false;
+  } */
 }
