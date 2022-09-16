@@ -8,6 +8,7 @@ import { POEDetailComponent } from './poe/components/poe-detail/poe-detail.compo
 import { POETableComponent } from './poe/components/poe-table/poe-table.component';
 import { UserSigninComponent } from './user/components/user-signin/user-signin.component';
 import { HasUserGuard } from './user/guards/has-user.guard';
+import { NoUserGuard } from './user/guards/no-user.guard';
 
 @NgModule({
   imports: [RouterModule.forRoot(AppRoutingModule.routes)],
@@ -23,14 +24,17 @@ export class AppRoutingModule {
     {
       path: 'interns',
       component: InternTableComponent,
+      canActivate: [NoUserGuard],
     },
     {
       path: 'intern/:id',
       component: InternDetailComponent,
+      canActivate: [NoUserGuard],
     },
     {
       path: 'intern/manage/add',
       component: InternAddComponent,
+      canActivate: [NoUserGuard],
     },
     {
       path: '',
@@ -60,7 +64,7 @@ export class AppRoutingModule {
       canActivate: [HasUserGuard],
     },
     {
-      //Fallback route
+      //Fallback Route if pattern was not found
       path: '**',
       redirectTo: 'poes',
       pathMatch: 'full',
