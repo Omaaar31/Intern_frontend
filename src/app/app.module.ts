@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { InternModule } from './intern/intern.module';
 import { POEModule } from './poe/poe.module';
 import { UserModule } from './user/user.module';
+import { appInit } from './core/services/app-init.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,7 @@ import { UserModule } from './user/user.module';
     POEModule,
     UserModule,
   ],
-  providers: [],
+  providers: [appInit],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
