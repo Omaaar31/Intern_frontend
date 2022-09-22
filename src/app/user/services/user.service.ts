@@ -82,6 +82,13 @@ export class UserService {
    */
 
   public isAuthenticated(): boolean {
+    if (this.user === null) {
+      return false;
+    }
+    return true;
+  }
+
+  public getToken(): void {
     const user: string | null = localStorage.getItem(this.STORAGE_KEY);
 
     if (user !== null) {
@@ -92,9 +99,5 @@ export class UserService {
       this.user.setLogin(persistentUser.login);
       this.user.setToken(persistentUser.token);
     }
-    if (this.user === null) {
-      return false;
-    }
-    return true;
   }
 }
