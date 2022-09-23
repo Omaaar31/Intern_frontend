@@ -112,4 +112,13 @@ export class InternService implements ICrud<Intern> {
   public getNextId(): number {
     return 0;
   }
+
+  public emailAlreadyExists(email: string): Observable<HttpResponse<any>> {
+    return this.httpClient.get<any>(
+      `${environment.apiRoot}intern/byemail?email=${email}`,
+      {
+        observe: 'response',
+      }
+    );
+  }
 }
