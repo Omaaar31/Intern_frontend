@@ -2,6 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, of, take, throwIfEmpty } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Logger } from '../helpers/logger.spec';
 import { ICrud } from '../interfaces/i-crud.ts';
 import { POE } from '../models/poe';
 
@@ -14,11 +15,7 @@ export class POEService implements ICrud<POE> {
 
   constructor(private httpClient: HttpClient) {}
 
-  public add(poe: POE): void {
-    if (this.findOne(poe.id!) === null) {
-      this.poes.push(poe);
-    }
-  }
+  add(item: POE): void {}
 
   public update(poe: POE): void {}
 
@@ -33,23 +30,13 @@ export class POEService implements ICrud<POE> {
   }
 
   findAll(): Observable<POE[]> {
-    let itemNumber: number = 0;
     return this.httpClient.get<any>(`${environment.apiRoot}poe`).pipe(
-      //Pipeline :
-      take(1), //Take : récupère la première valeur émise par l'Observable (tout le tableau) et stoppe l'observation
-      map((rawPoe: any) => {
-        // map rxjs = transforme un Obesrvable en un autre Observable
-        itemNumber = rawPoe.length;
-        this.itemNumber$.next(itemNumber); //Emet la nouvelle valuer
-        return rawPoe.map((rawPoe: any) => {
-          // J'ai besoin de créer un Objet poe à partir d'un rawPoe
-          const poe: POE = new POE();
-          poe.id = rawPoe.id;
-          poe.title = rawPoe.name;
-          poe.beginDate = new Date(rawPoe.beginDate);
-          poe.endDate = new Date(rawPoe.endDate);
-
-          return poe;
+      take(1),
+      map((poes: any) => {
+        return poes.map((poe: any) => {
+          const asClass: POE = new POE().deserialize(poe);
+          Logger.info(`Deserialized POE ${JSON.stringify(asClass)}`);
+          return asClass;
         });
       })
     );
@@ -72,7 +59,7 @@ export class POEService implements ICrud<POE> {
 
             const poe: POE = new POE();
             poe.id = rawPoe.id;
-            poe.title = rawPoe.title;
+            poe.name = rawPoe.name;
             poe.beginDate = new Date(rawPoe.beginDate);
             poe.endDate = new Date(rawPoe.endDate);
 
