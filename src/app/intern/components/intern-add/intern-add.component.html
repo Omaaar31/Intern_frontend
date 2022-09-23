@@ -84,6 +84,9 @@
             <span *ngIf="internForm.controls['email'].hasError('pattern')"
               >Not an email pattern...</span
             >
+            <span *ngIf="internForm.controls['email'].hasError('alreadyExists')"
+              >Cannot use this email, already taken !</span
+            >
           </mat-error>
         </mat-form-field>
       </div>
