@@ -96,7 +96,16 @@ export class InternService implements ICrud<Intern> {
     );
   }
 
-  public add(intern: Intern): void {}
+  public add(internData: unknown): Observable<Intern> {
+    return this.httpClient
+      .post<any>(`${environment.apiRoot}intern`, internData)
+      .pipe(
+        take(1),
+        map((rawIntern: unknown) => {
+          return new Intern().deserialize(rawIntern);
+        })
+      );
+  }
 
   public update(intern: Intern): void {}
 
