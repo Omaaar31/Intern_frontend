@@ -13,7 +13,7 @@
     <tr *ngFor="let poe of poeService.poes">
       <td>{{ poe.id }}</td>
       <td>
-        <a [routerLink]="['/', 'poe', poe.id]">{{ poe.title }}</a>
+        <a [routerLink]="['/', 'poe', poe.id]">{{ poe.name }}</a>
       </td>
       <td>{{ poe.beginDate | date: "mediumDate" }}</td>
       <td>{{ poe.endDate | date: "mediumDate" }}</td>
