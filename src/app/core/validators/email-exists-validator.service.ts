@@ -1,6 +1,10 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AbstractControl, ValidationErrors } from '@angular/forms';
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  ValidationErrors,
+} from '@angular/forms';
 import { take } from 'rxjs';
 import { Logger } from '../helpers/logger.spec';
 import { InternService } from '../services/intern.service';
@@ -9,6 +13,7 @@ import { InternService } from '../services/intern.service';
   providedIn: 'root',
 })
 export class EmailExistsValidatorService {
+  static emailExists: AsyncValidatorFn | AsyncValidatorFn[] | null | undefined;
   constructor(private internService: InternService) {}
 
   public alreadyExists(
