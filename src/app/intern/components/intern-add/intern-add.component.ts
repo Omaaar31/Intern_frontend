@@ -16,6 +16,7 @@ import { AddSnackService } from 'src/app/core/services/add-snack.service';
 import { InternService } from 'src/app/core/services/intern.service';
 import { POEService } from 'src/app/core/services/poe.service';
 import { DateValidator } from 'src/app/core/validators/date-validator';
+import { EmailExistsValidatorService } from 'src/app/core/validators/email-exists-validator.service';
 
 @Component({
   selector: 'app-intern-add',
@@ -31,7 +32,8 @@ export class InternAddComponent implements OnInit, OnDestroy {
     private internService: InternService,
     private poeService: POEService,
     private router: Router,
-    private snackBar: AddSnackService
+    private snackBar: AddSnackService,
+    private emailExistsValidator: EmailExistsValidatorService
   ) {}
 
   ngOnInit(): void {
@@ -47,15 +49,18 @@ export class InternAddComponent implements OnInit, OnDestroy {
             [Validators.required, Validators.minLength(2)],
           ],
 
-          email: new FormControl(
+          email: [
             '',
             Validators.compose([
               Validators.required,
               Validators.pattern(
                 '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'
               ),
-            ])
-          ),
+            ]),
+            this.emailExistsValidator.alreadyExists.bind(
+              this.emailExistsValidator
+            ),
+          ],
           firstName: [
             '',
             Validators.compose([Validators.required, Validators.minLength(2)]),
