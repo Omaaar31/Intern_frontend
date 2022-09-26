@@ -1,6 +1,6 @@
 <ng-container *ngIf="internForm">
   <form [formGroup]="internForm" (ngSubmit)="onSubmit()">
-    <fieldset title="Identité">
+    <fieldset title="Identité" class="identite">
       <legend>Identité</legend>
       <div class="form-group">
         <mat-form-field>
@@ -120,7 +120,7 @@
         </mat-form-field>
       </div>
     </fieldset>
-    <fieldset title="Affectations">
+    <fieldset title="Affectations" class="affectations">
       <legend>Affectations</legend>
       <div class="form-group">
         <p>Affecter aux POE</p>

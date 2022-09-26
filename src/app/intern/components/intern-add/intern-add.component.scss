@@ -7,3 +7,22 @@ mat-form-field {
   flex-direction: column;
   align-items: flex-start;
 }
+
+.identite {
+  background-color: rgb(242, 242, 242);
+  max-width: 500px;
+  padding: 16px;
+  border: 1px solid black;
+  background: #f6f8ff;
+}
+
+.affectations {
+  max-width: 500px;
+  padding: 16px;
+  border: 1px solid black;
+  background: #f6f8ff;
+}
+
+mat-list-option {
+  border: 1px solid black;
+}
