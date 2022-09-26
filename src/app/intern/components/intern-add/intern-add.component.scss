@@ -1,11 +1,21 @@
 .second-button {
-  left: 10px;
+  left: 47%;
+  top: 10px;
+}
+
+.first-button {
+  left: 46%;
+  top: 10px;
+}
+
+.value {
+  margin-left: 60%;
 }
 
 mat-form-field {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .identite {
@@ -14,6 +24,9 @@ mat-form-field {
   padding: 16px;
   border: 1px solid black;
   background: #f6f8ff;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .affectations {
@@ -21,8 +34,11 @@ mat-form-field {
   padding: 16px;
   border: 1px solid black;
   background: #f6f8ff;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 mat-list-option {
-  border: 1px solid black;
+  border-bottom: 1px solid black;
 }

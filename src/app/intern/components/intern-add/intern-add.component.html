@@ -134,7 +134,12 @@
         <span>Birth date cannot be after today...</span>
       </div>
     </fieldset>
-    <button mat-raised-button color="accent" [disabled]="internForm.invalid">
+    <button
+      class="first-button"
+      mat-raised-button
+      color="accent"
+      [disabled]="internForm.invalid"
+    >
       Save
     </button>
     <button
@@ -147,5 +152,7 @@
     </button>
   </form>
 
-  {{ internForm.value | json }}
+  <span class="value">
+    {{ internForm.value | json }}
+  </span>
 </ng-container>
