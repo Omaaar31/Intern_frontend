@@ -80,7 +80,9 @@ export class InternAddComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
   public onSubmit(): void {
     console.log(`Bout to send : ${JSON.stringify(this.internForm!.value)}`);
