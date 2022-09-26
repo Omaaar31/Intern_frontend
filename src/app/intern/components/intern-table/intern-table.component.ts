@@ -4,6 +4,8 @@ import { Intern } from './../../../core/models/intern';
 import { Logger } from 'src/app/core/helpers/logger.spec';
 import { POE } from 'src/app/core/models/poe';
 import { POEService } from 'src/app/core/services/poe.service';
+import { take } from 'rxjs/operators';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-intern-table',
@@ -42,7 +44,17 @@ export class InternTableComponent implements OnInit {
   }
 
   public onDelete(intern: Intern): void {
-    this.internService.delete(intern);
+    this.internService
+      .delete(intern)
+      .pipe(take(1))
+      .subscribe((response: HttpResponse<any>) => {
+        if (response.status === 204) {
+          this.interns.splice(
+            this.interns.findIndex((obj: Intern) => obj.id === intern.id),
+            1
+          );
+        }
+      });
   }
 
   public sortByName(): void {
