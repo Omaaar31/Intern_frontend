@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [],
@@ -27,5 +28,6 @@ export class UiModule {
     MatListModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatMenuModule,
   ];
 }
