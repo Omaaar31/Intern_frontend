@@ -4,6 +4,7 @@
   href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
   rel="stylesheet"
 />
+
 <h1>Interns list</h1>
 
 <h4>List of poes</h4>
@@ -63,15 +64,29 @@
       <td>
         <div appInitials [intern]="intern" [config]="bubbleConfig"></div>
       </td>
-      <button
-        mat-icon-button
-        color="primary"
-        aria-label="Example icon button with a home icon"
-        (click)="onDelete(intern)"
-      >
-        <td><mat-icon>delete</mat-icon></td>
-      </button>
-
+      <td>
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [routerLink]="['/intern', 'update', '/:id']">
+            <mat-icon>update</mat-icon>
+            <span>Update</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>star</mat-icon>
+            <span>Evaluate</span>
+          </button>
+          <button mat-menu-item (click)="onDelete(intern)">
+            <mat-icon>delete</mat-icon>
+            <span class="delete">Delete</span>
+          </button>
+        </mat-menu>
+      </td>
       <!--       <button class="remove" (click)="deleteRow(supp.intern)">Delete</button>
  -->
     </tr>
