@@ -107,8 +107,9 @@ export class InternService implements ICrud<Intern> {
       );
   }
 
-  public update(intern: Intern): void {}
-
+  public update(id: number, intern: Intern): Observable<any> {
+    return this.httpClient.put(`${environment.apiRoot}/${id}`, intern);
+  }
   public getNextId(): number {
     return 0;
   }
