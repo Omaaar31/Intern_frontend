@@ -17,7 +17,7 @@ export class POEService implements ICrud<POE> {
 
   add(item: POE): void {}
 
-  public update(poe: POE): void {}
+  public update(id: number, poe: POE): void {}
 
   public delete(poes: POE): Observable<HttpResponse<any>> {
     return this.httpClient.delete(
