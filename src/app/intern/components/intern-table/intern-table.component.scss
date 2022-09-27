@@ -13,13 +13,13 @@ h1 {
 }
 
 h4 {
-  margin-left: 4%;
+  margin-left: 2.5%;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
 }
 
 mat-form-field {
-  margin-left: 4%;
+  margin-left: 2.5%;
 }
 
 mat-option {
@@ -45,7 +45,7 @@ body {
 
 .button-add-intern {
   padding: 10px 14px;
-  margin-left: 86%;
+  margin-left: 84.5%;
   box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.5);
   line-height: 1.5;
   background: #0c4279;
@@ -75,6 +75,7 @@ body {
   &:focus,
   &:hover {
     background: darken(#008aa6, 7%);
+    background-image: linear-gradient(144deg, #0b0b4f, #0c4279, #008aa6);
   }
   &:active {
     &:after {
@@ -82,4 +83,8 @@ body {
       height: 10px;
     }
   }
+}
+
+.delete {
+  color: red;
 }
