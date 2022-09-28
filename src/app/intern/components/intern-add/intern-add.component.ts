@@ -17,6 +17,7 @@ import { InternService } from 'src/app/core/services/intern.service';
 import { POEService } from 'src/app/core/services/poe.service';
 import { DateValidator } from 'src/app/core/validators/date-validator';
 import { EmailExistsValidatorService } from 'src/app/core/validators/email-exists-validator.service';
+import { InternFormBuilder } from '../../builder/intern-form-builder';
 
 @Component({
   selector: 'app-intern-add',
@@ -37,46 +38,15 @@ export class InternAddComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.poeService
-      .findAll()
-      .pipe(take(1))
-      .subscribe((poes: POE[]) => {
-        Logger.info(`Got ${poes.length} poes`);
-        this.poes = poes;
-        this.internForm = this.formBuilder.group({
-          name: [
-            '', // Default value for the field control
-            [Validators.required, Validators.minLength(2)],
-          ],
-
-          email: [
-            '',
-            Validators.compose([
-              Validators.required,
-              Validators.pattern(
-                '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'
-              ),
-            ]),
-            this.emailExistsValidator.alreadyExists.bind(
-              this.emailExistsValidator
-            ),
-          ],
-          firstName: [
-            '',
-            Validators.compose([Validators.required, Validators.minLength(2)]),
-          ],
-          phoneNumber: [
-            '',
-            Validators.compose([
-              Validators.required,
-              Validators.pattern(/[0-9\+\-\ ]/),
-            ]),
-          ],
-
-          birthDate: ['', [Validators.required, DateValidator.dateNotLessThan]],
-          poes: ['', Validators.required],
-        });
-      });
+    const myInternForm: InternFormBuilder = new InternFormBuilder(
+      this.formBuilder,
+      this.emailExistsValidator,
+      this.poeService
+    );
+    this.internForm = myInternForm.internForm;
+    myInternForm.toggleAddPoes().subscribe((poes: POE[]) => {
+      this.poes = poes;
+    });
   }
 
   public ngOnDestroy(): void {
