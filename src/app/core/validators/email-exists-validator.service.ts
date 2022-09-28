@@ -1,20 +1,31 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { take } from 'rxjs';
+import { InternService } from './../services/intern.service';
+import { catchError, take } from 'rxjs';
 import { Logger } from '../helpers/logger.spec';
-import { InternService } from '../services/intern.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmailExistsValidatorService {
-  constructor(private internService: InternService) {}
+  private static myValidator: EmailExistsValidatorService;
+
+  constructor(private internService: InternService) {
+    EmailExistsValidatorService.myValidator = this; // Store the object instance in a static attribute of this class
+  }
+
+  public static emailExists(
+    control: AbstractControl
+  ): Promise<ValidationErrors | null> {
+    return EmailExistsValidatorService.myValidator.alreadyExists(control);
+  }
 
   public alreadyExists(
     control: AbstractControl
   ): Promise<ValidationErrors | null> {
     const validationError: ValidationErrors = { alreadyExists: true };
+
     return new Promise((emailExists) => {
       this.internService
         .emailAlreadyExists(control.value)
